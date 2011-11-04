@@ -6,21 +6,20 @@ Installation
 ----------------
 Right now you have to get it from github
 
-Add the middleware like this
+Add the middleware like this::
 
 MIDDLEWARE_CLASSES = (
-    ...
-    ...
+
     'mvtester.middleware.MVTesterMiddleware'
 )
 
 Make sure it is after the session middleware because mvtester uses sessions to track which treatments
 are active for running experiments.
 
-Add mvtester to your installed apps like this:
+Add mvtester to your installed apps like this::
 
 INSTALLED_APPS = (
-    ...
+
     'mvtester'
 )
 
@@ -59,7 +58,7 @@ treatment.
 Using the Decorator
 ~~~~~~~~~~~~~~~~~~~~~
 To use the decorator place @has_template_experiments on your class-based form view.  In each template for each treatment
-you must follow the pattern below to record conversions:
+you must follow the pattern below to record conversions::
         <input type="hidden" name="mvtester-goal-key" value="experimentslug:treatmentslug:goalslug"/>
         <input type="hidden" name="experimentslug:treatmentslug:goalslug" value="True"/>
 
