@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load mvtester_tags %}
 {% block title %}Register for AppCray-Z{% endblock %}
 {% block body %}
     <div class="container">
     Sign up now to get started.  After we get some info about you, you can get started on your own
     app profile.  We'll walk you through the steps to get you started ASAP.
     <form method="post">
-    <input type="hidden" name="mvtester-goal-key" value="registration:control:conversion"/>
-    <input type="hidden" name="registration:control:conversion" value="True"/>
+    {% treat_visitor registration-form control-registration registered True %}
     {% if form.non_field_errors %}
         <div class="help-block">{{ form.non_field.errors }}</div>
     {% endif %}
