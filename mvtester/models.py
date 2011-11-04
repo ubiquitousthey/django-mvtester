@@ -50,12 +50,9 @@ class Treatment(models.Model):
     def treat_visitor(self, goal_slug=None, converted=False):
         self.visitors_treated += 1
         self.save()
-
-        if not goal_slug:
-            return 
-        
-        goal = Goal.objects.get(slug=goal_slug)
-        goal.update(self,converted)
+        for goal in self.experiment.goal_set.all():
+            gconverted = converted and goal_slug and goal.slug == goal_slug
+            goal.update(self,gconverted)
 
     def __unicode__(self):
         return '{0}:{1}'.format(unicode(self.experiment), self.slug)
