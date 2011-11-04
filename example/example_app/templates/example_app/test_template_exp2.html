@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Register for AppCray-Z{% endblock %}
+{% block body %}
+    <div class="container">
+    Sign up now to get started.  After we get some info about you, you can get started on your own
+    app profile.  We'll walk you through the steps to get you started ASAP.
+    <form method="post">
+    <input type="hidden" name="mvtester-measurement-key" value="registration:exclusive:conversion"/>
+    <input type="hidden" name="registration:exclusive:conversion" value="True"/>
+    <fieldset>
+        <div class="clearfix"><label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label><div class="input">{{ form.username }}</div></div>
+        <div class="clearfix"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label><div class="input">{{ form.first_name }}</div></div>
+        <div class="clearfix"><label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label><div class="input">{{ form.last_name }}</div></div>
+    </fieldset>
+    <div class="clearfix"><label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label><div class="input">{{ form.email }}</div></div>
+    <div class="clearfix"><label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label><div class="input">{{ form.password1 }}</div></div>
+    <div class="clearfix"><label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label><div class="input">{{ form.password2 }}</div></div>
+    <div class="input"><input class="primary" type="submit" value="register"/></div>
+    </form>
+    </div>
+{% endblock %}

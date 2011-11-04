@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Register for AppCray-Z{% endblock %}
+{% block body %}
+    <div class="container">
+    <form method="post">
+    <input type="hidden" name="mvtester-measurement-key" value="registration:madlib:conversion"/>
+    <input type="hidden" name="registration:madlib:conversion" value="True"/>
+    Hi.  My name is <span class="inline-inputs">{{ form.first_name }} {{ form.last_name }}.</span>  I want to get
+        started developing my app concept.  You can email me at <span class="inline-inputs" >{{ form.email }}</span>.
+        I'll login as <span class="inline-inputs">{{ form.username }}</span> with the password
+        <span class="inline-inputs">{{ form.password1 }}</span>.
+        That was <span class="inline-inputs">{{ form.password2 }}</span>, so you get it right!
+
+    BTW, My market is {{ form.industry }}.
+    <input type="submit" value="Do it already"/>
+    </form>
+    </div>
+{% endblock %}

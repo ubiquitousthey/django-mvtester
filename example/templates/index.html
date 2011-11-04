@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Newest Web App{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="hero-unit">
+            <h1>AppCray-Z</h1>
+            <p>This world is going app crazy.  There are so many talented people out there creating apps, but <em>no way to get
+                your ideas into them.</em>  App crazy lets you do that.</p>
+            <p><a class="btn primary large" href="{% url register %}">Sign up free &raquo;</a></p>
+        </div>
+        <div class="row">
+            <div class="span6">
+              <h2>Learn</h2>
+              <p>Interacting with developers of apps your interested in is a great way to learn about app development.
+                  Everyone is short on time, so if you donate some time to a developer, he or she is likely to help you
+                  get started.  There is no better way to start developing the next great app than to help someone else first.</p>
+              <p><a class="btn" href="#">Find a Mentor &raquo;</a></p>
+            </div>
+            <div class="span5">
+              <h2>Earn</h2>
+               <p>Once you earn credits on AppCray-Z through cooperative development, you apply for paid apprenticeships
+               with developers.  Paid apprenticeships give you more responsibility and a chance to cash in on the success
+               of the app.</p>
+              <p><a class="btn" href="#">Earn Credits &raquo;</a></p>
+           </div>
+            <div class="span5">
+              <h2>Burn</h2>
+              <p>Once you have been an apprentice, it is time to rachet up your timeline for your own app.  When you have
+              earned enough credits, you'll have people applying to help you out.  Multiply your brian power with the
+              help of others.</p>
+              <p><a class="btn" href="#">Be a Mentor &raquo;</a></p>
+            </div>
+        </div>
+
+      <footer>
+        <p>&copy; AppCray-Z 2011</p>
+      </footer>
+    </div>
+{% endblock %}
