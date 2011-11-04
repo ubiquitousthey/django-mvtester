@@ -11,6 +11,10 @@ class GoalStatsGoalInline(admin.TabularInline):
 
 class GoalAdmin(ModelAdmin):
     inlines = (GoalStatsGoalInline,)
+    list_display = ('name','slug','current_winner')
+
+    def current_winner(self,obj):
+        return obj.get_winner().name
 
 class GoalStatsTreatmentInline(admin.TabularInline):
     model = GoalStats
@@ -22,18 +26,13 @@ class GoalStatsTreatmentInline(admin.TabularInline):
 class TreatmentAdmin(ModelAdmin):
     inlines = (GoalStatsTreatmentInline,)
 
-class TreatmentInline(admin.TabularInline):
-    model = Treatment
-    fk = 'experiment'
-    
 class ExperimentAdmin(admin.ModelAdmin):
-    inlines = (TreatmentInline,)
     list_display = ('name','slug','current_winners')
     
     def current_winners(self,obj):
         winners = []
         for goal in Goal.objects.filter(experiment=obj):
-            winner = obj.get_winner(goal.slug)
+            winner = goal.get_winner()
             if winner:
                 winners.append(winner.name)
         return ','.join(winners)

@@ -21,12 +21,8 @@ class Experiment(models.Model):
         return False
 
     def get_winner(self, goal_slug):
-        current_winner = self.treatment_set.get(is_control=True).goalstats_set.get(goal__slug=goal_slug)
-        for result in GoalStats.objects.filter(treatment__experiment=self, goal__slug=goal_slug):
-            if result.rate > current_winner.rate and result.z_score > 1.65:
-                current_winner = result
-
-        return current_winner.treatment
+        goal = self.goal_set.get(slug=goal_slug)
+        return goal.get_winner()
 
     def __unicode__(self):
         return self.slug
@@ -80,6 +76,14 @@ class Goal(models.Model):
     def update(self,treatment,converted):
         goalstats,created = treatment.goalstats_set.get_or_create(goal=self)
         goalstats.update(converted)
+
+    def get_winner(self):
+        current_winner = self.experiment.treatment_set.get(is_control=True).goalstats_set.get(goal=self)
+        for result in self.goalstats_set.all():
+            if result.rate > current_winner.rate and result.z_score > 1.65:
+                current_winner = result
+
+        return current_winner.treatment
 
     def __unicode__(self):
         return '{0}:{1}'.format(unicode(self.experiment), self.slug)

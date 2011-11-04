@@ -2,11 +2,28 @@
 {% block title %}Register for AppCray-Z{% endblock %}
 {% block body %}
     <div class="container">
-        <form method="post">
-        <input type="hidden" name="mvtester-measurement-key" value="registration:control:conversion"/>
-        <input type="hidden" name="registration:control:conversion" value="True"/>
-        {{ form.as_ul }}
-        <input type="submit" value="register"/>
-        </form>
+    Sign up now to get started.  After we get some info about you, you can get started on your own
+    app profile.  We'll walk you through the steps to get you started ASAP.
+    <form method="post">
+    <input type="hidden" name="mvtester-measurement-key" value="registration:control:conversion"/>
+    <input type="hidden" name="registration:control:conversion" value="True"/>
+    {% if form.non_field_errors %}
+        <div class="help-block">{{ form.non_field.errors }}</div>
+    {% endif %}
+    {% for field in form %}
+    <div class="clearfix {% if field.errors %}error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <div class="input">
+            {{ field }}
+            <span class="help-inline">
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="input"><input class="btn primary" type="submit" value="register"/></div>
+    </form>
     </div>
 {% endblock %}

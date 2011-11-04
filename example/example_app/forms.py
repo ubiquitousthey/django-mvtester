@@ -2,11 +2,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import fields, forms
 from example_app.models import Registration
+import models
 
 class RegistrationForm(UserCreationForm):
+    email = fields.EmailField(label='Email')
     first_name = fields.CharField(label='First Name')
     last_name = fields.CharField(label='Last Name')
-    email = fields.EmailField(label='Email')
+    user_type = fields.ChoiceField(choices=models.USER_TYPES)
+    app_interest_area = fields.ChoiceField(choices=models.APP_INTEREST_AREAS,required=False)
 
     def save(self, commit=True):
         user = super(RegistrationForm,self).save(commit)
@@ -16,7 +19,8 @@ class RegistrationForm(UserCreationForm):
         user.save()
         reg = Registration.objects.create(
             user = user,
-            industry = self.cleaned_data['industry']
+            user_type = self.cleaned_data['user_type'],
+            app_interest_area = self.cleaned_data['app_interest_area']
         )
         return reg
 

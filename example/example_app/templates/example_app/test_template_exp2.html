@@ -4,18 +4,38 @@
     <div class="container">
     Sign up now to get started.  After we get some info about you, you can get started on your own
     app profile.  We'll walk you through the steps to get you started ASAP.
-    <form method="post">
-    <input type="hidden" name="mvtester-measurement-key" value="registration:exclusive:conversion"/>
-    <input type="hidden" name="registration:exclusive:conversion" value="True"/>
-    <fieldset>
-        <div class="clearfix"><label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label><div class="input">{{ form.username }}</div></div>
-        <div class="clearfix"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label><div class="input">{{ form.first_name }}</div></div>
-        <div class="clearfix"><label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label><div class="input">{{ form.last_name }}</div></div>
-    </fieldset>
-    <div class="clearfix"><label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label><div class="input">{{ form.email }}</div></div>
-    <div class="clearfix"><label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label><div class="input">{{ form.password1 }}</div></div>
-    <div class="clearfix"><label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label><div class="input">{{ form.password2 }}</div></div>
-    <div class="input"><input class="primary" type="submit" value="register"/></div>
-    </form>
+        <div class="row">
+            <div class="span8">
+                <form method="post">
+                <input type="hidden" name="mvtester-measurement-key" value="registration:exclusive:conversion"/>
+                <input type="hidden" name="registration:exclusive:conversion" value="True"/>
+                    {% for field in form %}
+                    <div class="clearfix {% if field.errors %}error{% endif %}">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <div class="input">
+                            {{ field }}
+                            <span class="help-inline">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                <div class="input"><input class="btn primary" type="submit" value="register"/></div>
+                </form>
+            </div>
+            <div class="span8">
+                <div class="well">
+                <h4>Instant Team</h4>
+                "I went from concept sketch to working with a team of volunteer developers within a week.  We all really
+                feel like a team.  It is a lot of fun." -- <em>Jason Wilkins (Bartender by night - Entreprenuer by day)</em>
+                </div>
+                <div class="well">
+                <h4>Ideas Compete</h4>
+                "I have ideas all them time.  This gives ma way to see what resonates with others." -- <em>Sally Lenat (Receptionist and Entreprenuer)</em>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

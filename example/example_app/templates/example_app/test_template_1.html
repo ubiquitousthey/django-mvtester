@@ -1,18 +1,55 @@
 {% extends 'base.html' %}
 {% block title %}Register for AppCray-Z{% endblock %}
+{% block css %}
+    <style>
+        .madlib-input input {
+            margin-bottom: 10px
+        }
+        .error input{
+            border-color: #c87872;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     <div class="container">
-    <form method="post">
-    <input type="hidden" name="mvtester-measurement-key" value="registration:madlib:conversion"/>
-    <input type="hidden" name="registration:madlib:conversion" value="True"/>
-    Hi.  My name is <span class="inline-inputs">{{ form.first_name }} {{ form.last_name }}.</span>  I want to get
-        started developing my app concept.  You can email me at <span class="inline-inputs" >{{ form.email }}</span>.
-        I'll login as <span class="inline-inputs">{{ form.username }}</span> with the password
-        <span class="inline-inputs">{{ form.password1 }}</span>.
-        That was <span class="inline-inputs">{{ form.password2 }}</span>, so you get it right!
+    <div class="well">
+        <h4>Instant Team</h4>
+        "I went from concept sketch to working with a team of volunteer developers within a week.  We all really
+        feel like a team.  It is a lot of fun." -- <em>Jason Wilkins (Bartender by night - Entreprenuer by day)</em>
+    </div>
+    <div class="well">
+        <h4>Ideas Compete</h4>
+        "I have ideas all them time.  This gives ma way to see what resonates with others." -- <em>Sally Lenat (Receptionist and Entreprenuer)</em>
+    </div>
+    <div class="well">
+        <h4>Your turn</h4>
+        <form method="post">
+            <input type="hidden" name="mvtester-measurement-key" value="registration:madlib:conversion"/>
+            <input type="hidden" name="registration:madlib:conversion" value="True"/>
+            "I've decided it is time to stop dreaming and start working." --
+            <span class="madlib-input {% if form.first_name.errors %}error{% endif %}">{{ form.first_name }}</span>
+            <span class="madlib-input {% if form.last_name.errors %}error{% endif %}">{{ form.last_name }}</span><br/>
+            I am an <span class="madlib-input {% if form.user_type.errors %}error{% endif %}">{{ form.user_type }}</span>,
+            and you can email me at <span class="madlib-input {% if form.email.errors %}error{% endif %}">{{ form.email }}</span>.  I'll login as
+            <span class="madlib-input {% if form.username.errors %}error{% endif %}">{{ form.username }}</span> with the password
+            <span class="madlib-input {% if form.password1.errors %}error{% endif %}">{{ form.password1 }}</span>.
+            That was <span class="madlib-input {% if form.password2.errors %}error{% endif %}">{{ form.password2 }}</span>
+            , so you get it right!
+            <p></p>
+            <p><input class="btn primary" type="submit" value="Do it already"/></p>
+        </form>
 
-    BTW, My market is {{ form.industry }}.
-    <input type="submit" value="Do it already"/>
-    </form>
+        {% if form.errors %}
+            {% if form.errors %}
+                <div class="alert-message block-message error">
+                    <strong>Oops, there were errors in the above fields.</strong>
+                    {{ form.errors }}
+                    <p>
+                        If I was doing this for real, I'd use popovers for the messages.
+                    </p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
     </div>
 {% endblock %}
