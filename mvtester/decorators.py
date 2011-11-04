@@ -1,9 +1,4 @@
-import random
-from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.template import loader
-from django.template.base import TemplateDoesNotExist
-import os
 from mvtester.models import GoalStats, Treatment
 from mvtester.utils import get_template
 
