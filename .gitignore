@@ -3,6 +3,7 @@ dev.db
 local_settings.py
 media/ugc
 docs/_build/
+.idea/*
 src/
 pip-log.txt
 media/js/*.r*.js
