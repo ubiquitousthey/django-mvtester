@@ -28,6 +28,10 @@ Example
 In the example directory, there is an example of how to use each approach described below.  It example pages that should
 work to record conversions.  You can also use the "loadtestdata" management command to load data for testing.
 
+The database is all setup, so you can just run ./manage.py runserver and hit http://localhost:8000 for a demonstration.
+You can login to http://localhost:8000/admin to see how to edit the Experiments, Treatment, and Goals models.  Click
+on Goals to see what treatment is winning for each goal in the experiment.
+
 Usage
 ----------------
 There are three ways to use mvtester.  One is to use it with the middlware and url goal detection.  The advantage to
