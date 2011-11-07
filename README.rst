@@ -59,7 +59,7 @@ treatments and conversions.  You can setup multiple goals with different url pat
 treatment.
 
 
-Using the Decorator
+Using the Decorator & Template Tags
 ~~~~~~~~~~~~~~~~~~~~~
 To use the decorator place @has_template_experiments on your class-based form view.  In each template for each treatment
 you must follow the pattern below to record conversions::
@@ -67,5 +67,11 @@ you must follow the pattern below to record conversions::
         <input type="hidden" name="experimentslug:treatmentslug:goalslug" value="True"/>
 
 You can use multiple sets of these to track user engagement on the form itself using javascript to set the flag for
-conversion.
+conversion.  You also need to record the treatment of each visitor.  The best way to accomplish both of these goals
+is to use the template tag.  Load the mvtester_tags and use the **treat_visitor** tag in your form.  Provide 
+the experiment, goal and default conversion value as below::
+         {% treat_visitor registration-form quotes registered True %}
+
+This will both record the visitor treatment and create the input tags necessary for the processing of the POST 
+of the form.
 
